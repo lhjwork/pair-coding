@@ -2,7 +2,7 @@
   "name": "pair-coding",
   "displayName": "Pair Coding",
   "description": "AI와 한 줄씩 번갈아 짜는 페어 코딩 — 내 차례·정답·기초→응용을 에디터 줄 위에 바로 표시",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "lhjwork",
   "license": "MIT",
   "repository": "https://github.com/lhjwork/pair-coding",

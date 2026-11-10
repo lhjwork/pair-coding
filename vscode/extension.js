@@ -27,11 +27,21 @@ const noteDecos = {
 
 };
 
-// 툴팁: 라벨 + 설명(마크다운) + 이렇게 넣으면(파일 언어로 하이라이트) + 결과
+// 이렇게 넣으면(파일 언어로 하이라이트) + 결과
+const tryIt = (x, lang, title = '▶ 이렇게 넣으면') =>
+  (x.example ? `\n\n**${title}**\n\`\`\`${lang}\n${x.example}\n\`\`\`` : '') +
+  (x.result ? `\n\n**◀ 결과**\n\`\`\`text\n${x.result}\n\`\`\`` : '');
+
+// 기초 개념: 뭐야 → 여기서 어떻게 → 왜 이걸 → 넣어보면 (항상 같은 순서)
+const concept = (c, lang) => c ? `\n\n---\n\n### 🧱 기초: ${c.name || ''}` +
+  (c.what ? `\n\n**1. 뭐야?**\n\n${c.what}` : '') +
+  (c.where ? `\n\n**2. 여기서 어떻게 쓰였어?**\n\n${c.where}` : '') +
+  (c.why ? `\n\n**3. 왜 이걸 골랐어?**\n\n${c.why}` : '') +
+  tryIt(c, lang, '4. 넣어보면') : '';
+
+// 툴팁: 라벨 + 설명(마크다운) + 기초 개념 + 이렇게 넣으면 + 결과
 const tip = (label, detail, n, lang) => new vscode.MarkdownString(
-  (label ? `**${label}**\n\n` : '') + (detail || '') +
-  (n.example ? `\n\n**▶ 이렇게 넣으면**\n\`\`\`${lang}\n${n.example}\n\`\`\`` : '') +
-  (n.result ? `\n\n**◀ 결과**\n\`\`\`text\n${n.result}\n\`\`\`` : ''));
+  (label ? `**${label}**\n\n` : '') + (detail || '') + concept(n.concept, lang) + tryIt(n, lang));
 
 // match가 있으면 그 글자 범위만, 없으면 줄 전체. match가 줄에서 사라졌으면(=고쳤으면) null.
 function noteRange(doc, n) {
