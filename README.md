@@ -27,7 +27,20 @@ URL=https://raw.githubusercontent.com/lhjwork/pair-coding/main/skills/pair/SKILL
 
 Gemini CLI (TOML 형식이라 감싸서 저장):
 ```sh
-mkdir -p ~/.gemini/commands && { echo 'description = "페어 코딩"'; echo 'prompt = """'; curl -fsSL $URL | sed 's/\$ARGUMENTS/{{args}}/'; echo '"""'; } > ~/.gemini/commands/pair.toml
+mkdir -p ~/.gemini/commands && { echo 'description = "페어 코딩"'; echo "prompt = '''"; curl -fsSL $URL | sed 's/\$ARGUMENTS/{{args}}/'; echo "'''"; } > ~/.gemini/commands/pair.toml
+```
+
+## VS Code 확장 (에디터에서 턴 보기)
+
+AI가 매 턴 `.pair/turn.json`을 쓰면, 에디터의 해당 줄에 바로 표시된다. 어떤 AI(Claude, Codex, Gemini…)를 써도 동작.
+
+- 사용자 줄: 하이라이트 + `👉 네 차례: ...` + 버튼 `💡 정답 보기 | ✅ 했어 | ❓ 모르겠어 | ⏭ 패스 | ⚡ 빨리 | 💬 말하기`
+- AI가 쓴 줄: 줄 끝 메모, 마우스 올리면 무엇 / 기초 / 응용 / 팁
+- 버튼은 이름에 claude·codex·gemini가 들어간 터미널(없으면 열린 터미널)로 보낸다. 터미널이 없으면 클립보드에 복사.
+
+설치: [Releases](https://github.com/lhjwork/pair-coding/releases)에서 `pair-coding.vsix` 받아서
+```sh
+code --install-extension pair-coding.vsix
 ```
 
 ## 사용법
