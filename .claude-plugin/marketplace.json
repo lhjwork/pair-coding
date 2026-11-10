@@ -1,0 +1,7 @@
+{
+  "name": "pair-coding",
+  "owner": { "name": "lhjwork" },
+  "plugins": [
+    { "name": "pair-coding", "source": "./", "description": "한 줄씩 번갈아 짜는 페어 코딩" }
+  ]
+}
